@@ -1,0 +1,28 @@
+body {
+    font: 1rem "Helvetica", arial, sans-serif;
+    max-width: 100%; 
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: bolder;
+    width: 60%;
+    border-radius: 16px;
+}
+
+.common-display {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding: 2rem 0.5rem;
+    background-color: red;
+    color: white;
+    border-radius: 16px;
+}
+
+.crystal-pick {
+    display: inline-block;
+}
+
+#instructions {
+    font: "Helvetica", arial, sans-serif;
+}
