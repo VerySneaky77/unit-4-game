@@ -10,6 +10,10 @@ h1 {
     border-radius: 16px;
 }
 
+p {
+    border-radius: 16px;
+}
+
 .common-display {
     margin-top: 2rem;
     margin-bottom: 2rem;
@@ -21,8 +25,5 @@ h1 {
 
 .crystal-pick {
     display: inline-block;
-}
-
-#instructions {
-    font: "Helvetica", arial, sans-serif;
+    width: 80px;
 }
