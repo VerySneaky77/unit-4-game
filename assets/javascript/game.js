@@ -1,73 +1,111 @@
 // Crystal item limits
 const crystalNumber = 4;
 // Crystal value limits
-const crystalValueMin = 2;
+const crystalValueMin = 1;
 const crystalValueMax = 12;
-// Available types
-const crystalImages = ["url(assets/images/red.png)", "url(assets/images/green.png)", "url(assets/images/blue.png)","url(assets/images/white.png)"];
+// Total value limits
+const totalValueMin = 19;
+const totalValueMax = 120;
+const crystalsUI = ["crystal-1", "crystal-2", "crystal-3", "crystal-4"];
 
-$("document").ready(function () {
-    // Main play object
-    var crystal = {
+$(document).ready(function () {
+    // Main play objects
+    var crystal1 = {
+        uiElement: "crystal-1",
+        uiScore: "square-1",
         value: 0,
-        image: "#",
-
-        buildMe: function () {
-            this.image = crystalImages[myType];
-        },
-
-         generateValue: function() {
-            this.value = Math.floor((Math.random() * (crystalValueMax - crystalValueMin)) + crystalValueMin);
-        }
     };
 
-    // Collection of crystals
-    var crystalObjs = [];
-    var crystalUI = document.getElementsByClassName("crystal-pick");
+    var crystal2 = {
+        uiElement: "crystal-2",
+        uiScore: "square-2",
+        value: 0,
+    }
+
+    var crystal3 = {
+        uiElement: "crystal-3",
+        uiScore: "square-3",
+        value: 0,
+    }
+
+    var crystal4 = {
+        uiElement: "crystal-4",
+        uiScore: "square-4",
+        value: 0,
+    }
+
+    // Collection of play objects
+    var crystals = [crystal1, crystal2, crystal3, crystal4];
+
     // Score tracking
     var scoreTarget = 0;
     var scoreCurrent = 0;
     var winLoseRate = [0, 0];
+    // Track game progress
+    var gameOver = false;
 
-    // UI references
-    var gameUI = $("#game-UI");
+    resetSession();
 
-    generateCrystals();
-    updateGameUI();
+    // Class picker
+    $(".crystal-pick").on("click", function () {
+        if (gameOver === false) {
+            var choice = crystals[crystalsUI.indexOf(this.id)];
+            var scoreShow = $("#" + choice.uiScore);
 
-    $(".crystal-pick").on("click", function() {
-        
-        updateScoresUI();
+            scoreCurrent += choice.value;
+
+            // Check if the game is over
+            if (scoreCurrent === scoreTarget) {
+                winLoseRate[0] += 1;
+                gameOver = true;
+                updateUI();
+                displayMessage(true);
+            }
+            else if (scoreCurrent > scoreTarget) {
+                winLoseRate[1] += 1;
+                gameOver = true;
+                updateUI();
+                displayMessage(false);
+            }
+            else { updateUI(); }
+        }
     })
 
-    function generateCrystals() {
-        for (var i = 0; i < crystalNumber; i++) {
-            var crystalTemp = new crystal;
-            crystalObjs.push((crystalTemp.buildMe(), crystalTemp.generateValue()));
-        }
+    function generateValues() {
+        scoreTarget = Math.floor((Math.random() * (totalValueMax - totalValueMin)) + totalValueMin);
+
+        crystals.forEach(function (crystal) {
+            crystal.value = Math.floor((Math.random() * (crystalValueMax - crystalValueMin)) + crystalValueMin);
+        })
     }
 
+    // Press any key to reset
+    $(document).keyup(function (event) {
+        if (gameOver === true) {
+            resetSession();
+            gameOver = false;
+        }
+    })
+
+    // Reset UI and score
     function resetSession() {
         scoreCurrent = 0;
-
-        crystalObjs.forEach(function (crystal) {
-            crystal.value = generateValue();
-        });
+        scoreTarget = 0;
+        generateValues();
+        updateUI();
     }
 
-    function updateGameUI() {
-        for (var i = 0; i < crystalNumber; i++) {
-            crystalUI[i].css("background: " + crystalObjs[i].image);
-        }
-    }
-
-    function updateScoresUI() {
-        $("#target-score").text(scoreTarget);
+    function updateUI() {
         $("#current-score").text(scoreCurrent);
-    }
-
-    function updateWL() {
+        $("#target-score").text(scoreTarget);
         $("#wins").text(winLoseRate[0]);
         $("#losses").text(winLoseRate[1]);
+    }
+
+    function displayMessage(success) {
+        if (success) {
+            alert("Congratulations! Press any key to play again.")
+        }
+        else { alert("Oops! Press any key to play again."); }
     }
 });

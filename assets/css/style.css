@@ -25,5 +25,24 @@ p {
 
 .crystal-pick {
     display: inline-block;
-    width: 80px;
+    background-repeat: none;
+    background-size: cover;
+    width: 180px;
+    height: 180px;
+}
+
+#crystal-1 {
+    background-image: url("../images/red.png");
+}
+
+#crystal-2 {
+    background-image: url("../images/blue.png");
+}
+
+#crystal-3 {
+    background-image: url("../images/green.png");
+}
+
+#crystal-4 {
+    background-image: url("../images/white.png");
 }
