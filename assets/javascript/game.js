@@ -13,24 +13,28 @@ $(document).ready(function () {
     var crystal1 = {
         uiElement: "crystal-1",
         uiScore: "square-1",
+        uiImage: "gem-1",
         value: 0,
     };
 
     var crystal2 = {
         uiElement: "crystal-2",
         uiScore: "square-2",
+        uiImage: "gem-2",
         value: 0,
     }
 
     var crystal3 = {
         uiElement: "crystal-3",
         uiScore: "square-3",
+        uiImage: "gem-3",
         value: 0,
     }
 
     var crystal4 = {
         uiElement: "crystal-4",
         uiScore: "square-4",
+        uiImage: "gem-4",
         value: 0,
     }
 
@@ -50,9 +54,13 @@ $(document).ready(function () {
     $(".crystal-pick").on("click", function () {
         if (gameOver === false) {
             var choice = crystals[crystalsUI.indexOf(this.id)];
-            var scoreShow = $("#" + choice.uiScore);
+            var choiceFdback = document.getElementById(choice.uiImage);
 
             scoreCurrent += choice.value;
+            // Animate selection feedback
+            choiceFdback.classList.remove("select-flash");
+            choiceFdback.offsetWidth;
+            choiceFdback.classList.add("select-flash");
 
             // Check if the game is over
             if (scoreCurrent === scoreTarget) {

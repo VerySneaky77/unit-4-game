@@ -7,44 +7,59 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Crystals Collector</title>
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 
 <body>
-    <header>
-        <h1 class="common-display">Crystals Collector</h1>
+    <header class="container container-relative">
+        <div class="row">
+            <h1 class="common-display col-sm py-2">Crystals Collector</h1>
+        </div>
     </header>
 
-    <div id="instructions common-display">
-        <p>You will be given a random number at the start of the game.</p>
-        <p>There are four crystals below. By clicking on a crystal you will add a specific amount of points to your
-            total score.</p>
-        <p>You win the game by matching your total score to the random number. You lose the game if your total score
-            goes above the random number.</p>
-        <p>The value of each crystal is hidden from you until you clock on it.</p>
-        <p>Each time when the game starts, the game will change the values of each crystal.</p>
-    </div>
-
-    <div id="game-wrapper">
-        <h2>Target Score: </h2>
-        <p id="target-score"></p>
-        <div id="win-lose-rate common-display">
-            <p>Wins: <span id="wins">0</span></p>
-            <p>Losses: <span id="losses">0</span></p>
+    <div id="instructions" class="common-display container py-3 container-relative">
+        <div class="row">
+            <div class="col">
+                <p>You will be given a random number at the start of the game.</p>
+                <p>There are four crystals below. By clicking on a crystal you will add a specific amount of points to
+                    your
+                    total score.</p>
+                <p>You win the game by matching your total score to the random number. You lose the game if your total
+                    score
+                    goes above the random number.</p>
+                <p>The value of each crystal is hidden from you until you clock on it.</p>
+                <p>Each time when the game starts, the game will change the values of each crystal.</p>
+            </div>
         </div>
-        <div id="game-UI">
-            <div id="crystal-1" class="crystal-pick">
+
+        <div class="row">
+            <div class="col">
+                <p>Target Score: <span id="target-score"></span></p>
+                <div id="win-lose-rate">
+                    <p>Wins: <span id="wins">0</span></p>
+                    <p>Losses: <span id="losses">0</span></p>
+                </div>
             </div>
-            <div id="crystal-2" class="crystal-pick">
+        </div>
+
+        <div class="row">
+            <div id="crystal-1" class="crystal-pick col-sm-3">
+                <img src="assets/images/red.png" alt="red gem" id="gem-1" class="img-fluid gem-img">
             </div>
-            <div id="crystal-3" class="crystal-pick">
+            <div id="crystal-2" class="crystal-pick col-sm-3">
+                <img src="assets/images/blue.png" alt="blue gem" id="gem-2" class="img-fluid gem-img">
             </div>
-            <div id="crystal-4" class="crystal-pick">
+            <div id="crystal-3" class="crystal-pick col-sm-3">
+                <img src="assets/images/green.png" alt="green gem" id="gem-3" class="img-fluid gem-img">
+            </div>
+            <div id="crystal-4" class="crystal-pick col-sm-3">
+                <img src="assets/images/white.png" alt="white gem" id="gem-4" class="img-fluid gem-img">
             </div>
         </div>
         <div id="user-score common-display">
-            <h2>Current Score: </h2>
-            <p id="current-score">0</p>
+            <p>Current Score: <span id="current-score">0</span></p>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
